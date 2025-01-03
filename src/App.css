@@ -1,0 +1,21 @@
+.title {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    color: #000;
+}
+
+body {
+    font-family: 'Cascadia Code', monospace !important;
+    user-select: none;
+}
+
+#text {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    transform: translate(-50%, 0);
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-break: anywhere;
+}
