@@ -3,19 +3,80 @@
     top: 1em;
     left: 1em;
     color: #000;
+    cursor: pointer;
+}
+
+#timer {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    font-size: 1.5em;
 }
 
 body {
     font-family: 'Cascadia Code', monospace !important;
     user-select: none;
+    background-color: #fafafa;
+}
+
+#settingsButton {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.5em;
+    font-size: 2em;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    background-color: #eeeeeeaa;
+    border: 2px #fff solid;
+    color: #333;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+}
+
+#settingsButton:hover {
+    background-color: #ddd;
+    border: 2px #000 solid;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px #00000044;
+}
+
+#gogo {
+    background-color: #aaa;
+    font-size: 2em;
+}
+
+#gogo:hover {
+    background-color: #888;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px #00000044;
 }
 
 #text {
     position: absolute;
     top: 20%;
-    left: 30%;
+    left: 50%;
     transform: translate(-50%, 0);
     word-break: break-all;
     white-space: pre-wrap;
-    line-break: anywhere;
+    text-wrap-mode: wrap !important;
+}
+
+@media (max-width: 768px) {
+    #text {
+        font-size: 0.8em !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #text {
+        font-size: 1em !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1536px) {
+    #text {
+        font-size: 1.3em !important;
+    }
 }
