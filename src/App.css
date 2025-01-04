@@ -43,14 +43,24 @@ body {
 }
 
 #gogo {
-    background-color: #aaa;
+    background-color: #88a;
     font-size: 2em;
+    box-shadow: 0 0 2.5px #00000044;
 }
 
 #gogo:hover {
-    background-color: #888;
+    background-color: #669;
     transform: scale(1.1);
     box-shadow: 0 0 5px #00000044;
+}
+
+#settingsMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #text {

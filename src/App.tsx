@@ -1,9 +1,24 @@
 import '@mantine/core/styles.css'
 import './App.css'
-import { Button, Center, MantineProvider, Text, Title } from '@mantine/core'
+import { Button, Card, Center, MantineProvider, Text, Title } from '@mantine/core'
 import { FaCog } from 'react-icons/fa'
+import { useState } from 'react'
 
 function App() {
+  const [settingsOpened, setSettingsOpened] = useState(false)
+
+  function settings(){
+    const settings = document.getElementById('settingsMenu')
+    if (!settings) return;
+    if (settingsOpened) {
+      setSettingsOpened(false)
+      settings.style.display = 'none'
+    } else{
+      setSettingsOpened(true)
+      settings.style.display = ''
+    }
+  }
+
   return (
     <MantineProvider>
       <Title onClick={() => { window.location.reload() }} className='title'><span style={{ color: '#4444ff' }}>coder</span>.<span style={{ color: 'darkkhaki' }}>type</span><span style={{ color: '#4444ff' }}>(&thinsp;)</span></Title>
@@ -12,7 +27,14 @@ function App() {
       <Center id='gbtn' style={{ height: '100vh' }}>
         <Button id='gogo' onClick={gogo}>Start</Button>
       </Center>
-      <Button id='settingsButton'><FaCog /></Button>
+      <Button id='settingsButton' onClick={settings}><FaCog /></Button>
+      <Center id='settingsMenu' style={{display:'none'}}>
+        <Card shadow='md' radius='md' padding='xl' style={{position:'relative'}}>
+          <Button id='settingsClose' onClick={settings} style={{position:'absolute', top:'0.5em', right:'0.5em', borderRadius:'50%', padding:'5px', backgroundColor:'transparent', color:'black', fontSize:'1.5em'}}>&times;</Button>
+          <Title order={3}>Settings</Title>
+
+        </Card>
+      </Center>
     </MantineProvider>
   )
 }
@@ -103,7 +125,7 @@ document.body.appendChild(div);`,
     }
   }, 10);
   let typedText = '';
-  textarea.addEventListener('input', (e) => {
+  textarea.addEventListener('input', () => {
     if (startTime === null) {
       startTime = new Date().getTime();
     }
@@ -152,6 +174,8 @@ document.body.appendChild(div);`,
     }
   });
 }
+
+
 
 window.onclick = () => {
   document.getElementById('textarea')?.focus();
