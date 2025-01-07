@@ -42,10 +42,48 @@ body {
     box-shadow: 0 0 5px #00000044;
 }
 
+#comingSoon {
+    position: absolute;
+    bottom: 0.5em;
+    left: 0.5em;
+    font-size: 2em;
+    border-radius: 10px;
+    width: fit-content;
+    height: 2em;
+    background-color: #f3f1fcaa;
+    border: 2px #fff solid;
+    color: #333;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+}
+
+#comingSoon:hover {
+    background-color: #cfcae3aa;
+    border: 2px #000 solid;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px #00000044;
+}
+
 #gogo {
     background-color: #88a;
     font-size: 2em;
     box-shadow: 0 0 2.5px #00000044;
+}
+
+#vbtn {
+    background-color: rgb(152, 152, 206);
+    font-size: 1em;
+    box-shadow: 0 0 2.5px #00000044;
+    word-break: break-all;
+    max-width: 90vw;
+    min-height: fit-content;
+}
+
+#vbtn:hover {
+    background-color: #77a;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px #00000044;
 }
 
 #gogo:hover {
@@ -54,7 +92,8 @@ body {
     box-shadow: 0 0 5px #00000044;
 }
 
-#settingsMenu {
+#settingsMenu,
+#comingSoonModal {
     position: absolute;
     top: 0;
     left: 0;
@@ -75,7 +114,14 @@ body {
 
 @media (max-width: 768px) {
     #text {
-        font-size: 0.8em !important;
+        font-size: 0.4em !important;
+    }
+    #comingSoon {
+        font-size: 1em;
+        bottom: 2em;
+    }
+    #mt {
+        display: block !important;
     }
 }
 
@@ -83,10 +129,16 @@ body {
     #text {
         font-size: 1em !important;
     }
+    #mt {
+        display: none !important;
+    }
 }
 
-@media (min-width: 1024px) and (max-width: 1536px) {
+@media (min-width: 1024px) {
     #text {
         font-size: 1.3em !important;
+    }
+    #mt {
+        display: none !important;
     }
 }

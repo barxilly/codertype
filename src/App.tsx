@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css'
 import './App.css'
-import { Button, Card, Center, Checkbox, CheckboxCard, MantineProvider, Text, Title } from '@mantine/core'
+import { Button, Card, Center, Checkbox, List, MantineProvider, Stack, Text, Title } from '@mantine/core'
 import { FaCog } from 'react-icons/fa'
 import { useState } from 'react'
 
@@ -8,6 +8,17 @@ function App() {
   const [settingsOpened, setSettingsOpened] = useState(false)
   const [backspace, setBackspace] = useState(false)
   const [autoenter, setAutoenter] = useState(false)
+  const [showVideo, setShowVideo] = useState(false)
+  const comingSoon = () => {
+    const modal = document.getElementById('comingSoonModal')
+    if (!modal) return;
+    if (modal.style.display === 'none') {
+      modal.style.display = ''
+    } else {
+      modal.style.display = 'none'
+    }
+  }
+
 
   function gogo() {
     const text = document.getElementById('text');
@@ -66,7 +77,7 @@ function App() {
   };`,
       `function launchNukes(city) {
     const loc = [city.lat,city.long];
-    const url = 'https://api.defense.gov/supersecretapi/launchnuke?lat='+loc[0]+'&long='+loc[1];
+    const url = 'https://api.defense.gov/supersecretapi/launchnuke';
     fetch(url).then(res => res.json()).then(data => console.log(data));
     console.log('Nukes are launched!');
   }
@@ -150,15 +161,15 @@ function App() {
     });
   }
 
-  function settings(){
+  function settings() {
     const settings = document.getElementById('settingsMenu')
     if (!settings) return;
     if (settingsOpened) {
       setSettingsOpened(false)
       settings.style.display = 'none'
       // Save settings to localStorage
-      localStorage.setItem('settings', JSON.stringify({ 'backspace': backspace, 'autoenter': autoenter })); 
-    } else{
+      localStorage.setItem('settings', JSON.stringify({ 'backspace': backspace, 'autoenter': autoenter }));
+    } else {
       setSettingsOpened(true)
       settings.style.display = ''
     }
@@ -175,20 +186,50 @@ function App() {
   }
 
   return (
-    <MantineProvider>
-      <Title onClick={() => { window.location.reload() }} className='title'><span style={{ color: '#4444ff' }}>coder</span>.<span style={{ color: 'darkkhaki' }}>type</span><span style={{ color: '#4444ff' }}>(&thinsp;)</span></Title>
+    <MantineProvider forceColorScheme='light'>
+      <Title onClick={() => { window.location.reload() }} className='title'><span style={{ color: '#4444ff' }}>coder</span>.<span style={{ color: 'darkkhaki' }}>type</span><span style={{ color: '#4444ff' }}>(&thinsp;)</span>&thinsp;<sub style={{ fontSize: '0.4em', color: '#555' }}>v1.0</sub></Title>
       <Text id='timer'></Text>
       <Text id='text' style={{ fontSize: '2em', width: '80%', display: 'none' }}>Words</Text>
       <Center id='gbtn' style={{ height: '100vh' }}>
-        <Button id='gogo' onClick={gogo}>Start</Button>
+        <Stack>
+          <Center>
+            <Button id="vbtn" onClick={() => setShowVideo(!showVideo)}>
+              {showVideo ? 'Hide Demo Video' : 'Show Demo Video'}
+            </Button>
+          </Center>
+          {showVideo && (
+            <Center>
+              <video src='/demo.mp4' loop muted controls style={{ width: '50%' }}></video>
+            </Center>
+          )}
+          <Center><Button id='gogo' onClick={gogo}>Start</Button></Center>
+          <Center><Text id="mt" style={{ maxWidth: '70vw', textAlign: 'center', fontSize: '0.7em' }}>If on mobile, please only take the video into consideration, as mobile support is experimental and will be fully out in a future update.</Text></Center>
+        </Stack>
       </Center>
       <Button id='settingsButton' onClick={settings}><FaCog /></Button>
-      <Center id='settingsMenu' style={{display:'none'}}>
-        <Card shadow='md' radius='md' padding='xl' style={{position:'relative'}}>
-          <Button id='settingsClose' onClick={settings} style={{position:'absolute', top:'0.5em', right:'0.5em', borderRadius:'50%', padding:'5px', backgroundColor:'transparent', color:'black', fontSize:'1.5em'}}>&times;</Button>
+      <Button id='comingSoon' onClick={comingSoon}>Planned Updates</Button>
+      <Center id='settingsMenu' style={{ display: 'none' }}>
+        <Card shadow='md' radius='md' padding='xl' style={{ position: 'relative' }}>
+          <Button id='settingsClose' onClick={settings} style={{ position: 'absolute', top: '0.5em', right: '0.5em', borderRadius: '50%', padding: '5px', backgroundColor: 'transparent', color: 'black', fontSize: '1.5em' }}>&times;</Button>
           <Title order={3}>Settings</Title>
-          <Checkbox label='Enable Backspace' checked={backspace} onChange={(e) => setBackspace(e.currentTarget.checked)} />
-          <Checkbox label='Auto-Enter' checked={autoenter} onChange={(e) => setAutoenter(e.currentTarget.checked)} />
+          <Checkbox mt='md' label='Enable Backspace' checked={backspace} onChange={(e) => setBackspace(e.currentTarget.checked)} />
+          <Checkbox mt='xs' label='Auto-Enter' disabled checked={true} onChange={(e) => console.log(e)/*setAutoenter(e.currentTarget.checked)*/} />
+        </Card>
+      </Center>
+
+      <Center id='comingSoonModal' style={{ display: 'none' }}>
+        <Card shadow='md' radius='md' padding='xl' style={{ position: 'relative' }}>
+          <Button id='closeComingSoon' onClick={comingSoon} style={{ position: 'absolute', top: '0.5em', right: '0.5em', borderRadius: '50%', padding: '5px', backgroundColor: 'transparent', color: 'black', fontSize: '1.5em' }}>&times;</Button>
+          <Title order={3}>Coming Soon</Title>
+          <List mt='md'>
+            <List.Item>More (coding) Languages</List.Item>
+            <List.Item>Dark Theme</List.Item>
+            <List.Item>User Stats</List.Item>
+            <List.Item>Built-in Sharing</List.Item>
+            <List.Item>Full Mobile Support</List.Item>
+            <List.Item>More Customisability</List.Item>
+            <List.Item>Fix Accuracy</List.Item>
+          </List>
         </Card>
       </Center>
     </MantineProvider>
@@ -203,12 +244,16 @@ window.onclick = () => {
 }
 
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Tab') {
-    e.preventDefault();
-    const textarea = document.getElementById('textarea') as HTMLTextAreaElement;
-    if (textarea) {
+  const textarea = document.getElementById('textarea') as HTMLTextAreaElement;
+  if (textarea) {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+
       textarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
       textarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
+    }
+    if (e.key === 'Enter') {
+      e.preventDefault();
     }
   }
 });

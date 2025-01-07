@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+# coder.type()
+Speedtyping, but code.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Built using
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Mantine](https://mantine.dev/)
+- [React-Icons](https://react-icons.github.io/react-icons/)
 
-Currently, two official plugins are available:
+## Features
+- Supports JavaScript as of now
+- Backspaces disabled by default, but can be enabled
+- Customisable settings
+- Accuracy Score
+- WPM Score
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Future Features
+- More languages
+- Dark mode
+- User stats
+- Built-in sharing
+- Full mobile support
+- More customisation
+- Better accuracy (taking in fixed typos)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Usage
+1. Build site or go to [coder.type.benjs.uk](https://coder.type.benjs.uk)
+2. Press start
+3. Type the code that appears on the screen as fast as you can and as accurately as you can
+4. See your score
