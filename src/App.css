@@ -2,8 +2,13 @@
     position: absolute;
     top: 1em;
     left: 1em;
-    color: #000;
+    color: var(--mantine-color-text);
     cursor: pointer;
+}
+
+canvas {
+    width: 50vw !important;
+    height: 50vh !important;
 }
 
 #timer {
@@ -13,10 +18,14 @@
     font-size: 1.5em;
 }
 
+#chartdiv {
+    background-color: #fff;
+    border-radius: 3px;
+}
+
 body {
     font-family: 'Cascadia Code', monospace !important;
     user-select: none;
-    background-color: #fafafa;
 }
 
 #settingsButton {
@@ -28,7 +37,7 @@ body {
     width: 2em;
     height: 2em;
     background-color: #eeeeeeaa;
-    border: 2px #fff solid;
+    border: 2px var(--mantine-color-default) solid;
     color: #333;
     backdrop-filter: blur(10px);
     transition: all 0.2s;
@@ -51,7 +60,7 @@ body {
     width: fit-content;
     height: 2em;
     background-color: #f3f1fcaa;
-    border: 2px #fff solid;
+    border: 2px var(--mantine-color-default) solid;
     color: #333;
     backdrop-filter: blur(10px);
     transition: all 0.2s;
@@ -66,7 +75,7 @@ body {
 }
 
 #gogo {
-    background-color: #88a;
+    background-color: var(--mantine-color-grape-filled);
     font-size: 2em;
     box-shadow: 0 0 2.5px #00000044;
 }
@@ -87,13 +96,14 @@ body {
 }
 
 #gogo:hover {
-    background-color: #669;
+    background-color: var(--mantine-color-grape-filled-hover);
     transform: scale(1.1);
     box-shadow: 0 0 5px #00000044;
 }
 
 #settingsMenu,
-#comingSoonModal {
+#comingSoonModal,
+#whatsNewModal {
     position: absolute;
     top: 0;
     left: 0;
